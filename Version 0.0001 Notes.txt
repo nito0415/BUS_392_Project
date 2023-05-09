@@ -1,0 +1,33 @@
+Notes on Scope for BUS 392
+
+Active effects dictionary
+
+Inventory Dictionary
+
+Code to not be able to get item again
+
+Allow for more than one multiple of an item in inventory and mark it as "Potion x2"
+
+Ask the user how many lines of code to keep to refer back to
+
+Maybe add a loading cursor or ascii animation
+
+Break code up into cells
+
+Define functions for death code and randomization
+
+Have all options for player choices appear immediately, can go on a bit long
+
+Did option 3 again, door should not have to be unlocked again, write case for just being able to go through the passageway/ Create a variable at beginning and then redefine inside the loop and the loop doesn't go through opening door text
+
+Define functions
+
+Death sequence should empty out inventory = ["Inventory includes:"] and active_effects =["Active effects:"]
+
+Look into a function that takes you to a certain line
+
+Stats: Defense and HP, Atk stat on weapons
+
+Golden ring passive 50% chance to take no damage
+
+Combat functions for weapons
