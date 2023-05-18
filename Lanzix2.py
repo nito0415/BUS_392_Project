@@ -127,6 +127,7 @@ import time
 inventory = {}
 active_effects = {}
 
+time_chase = random.randint(10, 60)
 health = 100
 quote_during_battle = ["Test Quote", "Test Quote 2", "Test Quote 3"]
 
@@ -441,7 +442,7 @@ while True:
                     # time.sleep(3)
 
                     hidden_passage = input("Do you attempt to go through the passageway? ")
-                    if (hidden_passage.lower() == "yes" and "Golden ring" in inventory):
+                    if (hidden_passage.lower() in user_yes):
                         # time.sleep(1)
                         print("You insert the golden ring into the keyhole of the passage.")
                         # time.sleep(3)
@@ -456,16 +457,18 @@ while True:
                         while True:
                             # time.sleep(3)
                             hidden_passage_feather = input("Do you take the feather? ")
+
                             if (hidden_passage_feather.lower() in user_yes):
                                 # time.sleep(3)
                                 print("You take the feather!")
                                 # time.sleep(3)
-                                inventory["feather"] = 1
+                                inventory["Feather"] = 1
                                 print(inventory)
                                 # time.sleep(3)
                                 print("You hear a killer enter through the tunnel behind you.")
                                 # time.sleep(3)
-                                hidden_passage_killer = input("What do you do? ")
+
+                                hidden_passage_killer = input("What do you do(Run or Hide)? ")
 
                                 if (hidden_passage_killer.lower() == "hide"):
                                     # time.sleep(6)
@@ -490,44 +493,47 @@ while True:
                                         # time.sleep(3)
                                         print("The killer sees you!")
                                         # time.sleep(3)
-                                        time_chase = random.randint(10, 60)
+
                                         print(f"You have about {time_chase} seconds to escape.")
                                         # time.sleep(3)
 
-                                        escape_feather = input("What do you do?")
-                                        if (escape_feather.lower() == "run"):
-                                            print("You start running!")
-                                            # time.sleep(3)
-                                            for i in range(time_chase, 0):
-                                                print(f"You have {i} seconds left!")
-                                                # time.sleep(1)
-                                                # 2% chance of immediate death every iteration.
-                                                if time_chase >= 30 or "Powerful energy" in active_effects:
-                                                    # time.sleep(3)
-                                                    print("You escaped the killer!")
-                                                    # time.sleep(3)
-                                                    break
 
 
-                                                else:
-                                                    if ("feather" in inventory or "Powerful energy" in active_effects):
-                                                        # time.sleep(3)
-                                                        print("You live!")
-                                                        # time.sleep(3)
-                                                        print("You survived the attack!")
-                                                        # time.sleep(3)
-                                                        print("You quickly rush back the way you came.")
-                                                        continue
-                                                    else:
-                                                        # time.sleep(3)
-                                                        print("You die.")
-                                                        # time.sleep(3)
-                                                        print("RESPAWN")
-                                                        continue
+                                if (hidden_passage_killer.lower() == "run"):
+                                    print("You start running!")
+                                    print(time_chase)
+                                    time.sleep(3)
+                                    for i in range(time_chase, 0):
+                                        print(f"You have {i} seconds left!")
+                                        time.sleep(1)
+                                        #2% chance of immediate death every iteration.
+                                        if time_chase >= 30 or "Powerful energy" in active_effects:
+                                            time.sleep(3)
+                                            print("You escaped the killer!")
+                                            time.sleep(3)
+                                            break
+
+                                        else:
+                                            if ("feather" in inventory or "Powerful energy" in active_effects):
+                                                # time.sleep(3)
+                                                print("You live!")
+                                                # time.sleep(3)
+                                                print("You survived the attack!")
+                                                # time.sleep(3)
+                                                print("You quickly rush back the way you came.")
+                                                continue
+                                            else:
+                                                # time.sleep(3)
+                                                print("You die.")
+                                                # time.sleep(3)
+                                                print("RESPAWN")
+                                                continue
 
 
                                 else:
-                                    print("You")
+                                    print(f"You {hidden_passage_killer}")
+                                    break
+
                             else:
                                 print("Are you sure you don't want the feather?")
                                 time.sleep(3)
