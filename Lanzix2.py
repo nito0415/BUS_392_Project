@@ -414,31 +414,31 @@ while True:
 
                         # pit opens up and swallows you, you fall for a long time and land into a lake
                     if (choice_plate1.lower() == "3"):
-                        # time.sleep(1)
-
+                        #time.sleep(1)
+                        pass
                     # easter egg
-                if (choice_plate1.lower() == "4"):
-                    # time.sleep(1)
-                    print("a passage way opens up to your right")
-                    # time.sleep(3)
-                    print("as you walk down the passage a wolf appears")
-                    # time.sleep(3)
-                    print("you look down at the wolf, suprised")
-                    # time.sleep(3)
-                    print("the wolf looks back at you, it seems to be grinning")
-                    # time.sleep(3)
-                    print("'what do you need assistance with'")
-                    # time.sleep(3)
-                    # option to ask for help with whatever here
+                    if (choice_plate1.lower() == "4"):
+                        # time.sleep(1)
+                        print("a passage way opens up to your right")
+                        # time.sleep(3)
+                        print("as you walk down the passage a wolf appears")
+                        # time.sleep(3)
+                        print("you look down at the wolf, suprised")
+                        # time.sleep(3)
+                        print("the wolf looks back at you, it seems to be grinning")
+                        # time.sleep(3)
+                        print("'what do you need assistance with'")
+                        # time.sleep(3)
+                        # option to ask for help with whatever here
 
-            if (choice_a.lower() == "3"):
-                # time.sleep(3)
-                print("You investigate the plants.")
-                # time.sleep(3)
-                print("You notice a hidden passageway behind the plants.")
-                # time.sleep(3)
-                print("The hidden passageway has a keyhole in the shape of a ring.")
-                # time.sleep(3)
+                if (choice_a.lower() == "3"):
+                    # time.sleep(3)
+                    print("You investigate the plants.")
+                    # time.sleep(3)
+                    print("You notice a hidden passageway behind the plants.")
+                    # time.sleep(3)
+                    print("The hidden passageway has a keyhole in the shape of a ring.")
+                    # time.sleep(3)
 
                     hidden_passage = input("Do you attempt to go through the passageway? ")
                     if (hidden_passage.lower() == "yes" and "Golden ring" in inventory):
@@ -549,8 +549,11 @@ while True:
                         continue
 
                 if (choice_a.lower() == "4"):
+                    pass
                     # time.sleep(3)
+
                 if (choice_a.lower() == "5"):
+                    print("")
                     # time.sleep(3)
                     print("You approach the stone basin and it's strange contents.")
                     # time.sleep(5)
