@@ -31,3 +31,26 @@ Stats: Defense and HP, Atk stat on weapons
 Golden ring passive 50% chance to take no damage
 
 Combat functions for weapons
+
+
+TODO:
+
+Breaks and continues, currently working
+
+Add the knife in the pressure plate sequence 3
+
+Quality of life updates like save states, score, run time
+
+When dying, killer kills message pops up twice and acheivement
+
+Change the while loops to conditions that are not related to health
+
+Name the loops
+Main loop
+Wizard loop etc
+
+Timer
+
+
+Notes:
+Issues we've been having - the loops we have been writing haven't been working how we intended
