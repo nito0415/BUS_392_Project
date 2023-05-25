@@ -1,3 +1,4 @@
+
 import random
 import time
 
@@ -49,6 +50,7 @@ def battle_code_lite(health, inventory, active_effects):
         # time.sleep(3)
         print("The beast runs away.")
         # time.sleep(3)
+
     else:
         damage = random.randint(0, 20)
         health -= damage
@@ -344,7 +346,6 @@ def explore_message_killer_no():
     # time.sleep(3)
     print("You notice a faint light in the distance towards the direction of the scream.")
     # time.sleep(3)
-
 def choice_5_a():
     # time.sleep(3)
     print("Suddenly two torches light up two opposite ends of the cave you're in.")
