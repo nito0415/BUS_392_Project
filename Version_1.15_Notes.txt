@@ -37,20 +37,19 @@ TODO:
 
 Breaks and continues, currently working
 
-Add the knife in the pressure plate sequence 3
+Add the knife in the pressure plate sequence 3 - DONE
 
 Quality of life updates like save states, score, run time
 
-When dying, killer kills message pops up twice and acheivement
+When dying, killer kills message pops up twice and achievement
 
 Change the while loops to conditions that are not related to health
 
-Name the loops
-Main loop
-Wizard loop etc
+Numbered loops
 
-Timer
+Timer - DONE
 
+Let the user be able to define the time.sleep argument
 
 Notes:
 Issues we've been having - the loops we have been writing haven't been working how we intended
