@@ -2,9 +2,6 @@
 import random
 import time
 
-
-
-
 time_chase = random.randint(10, 60)
 health = 100
 quote_during_battle = ["Never should have come here!", "Test Quote 2", "Test Quote 3"]
@@ -35,7 +32,7 @@ def achievement_unlocked(award, achievements):
         pass
 
 
-def battle_code_lite(health, inventory, active_effects):
+def battle_code_lite(health, inventory, active_effects, loop):
     beasts = ["Werewolf", "Bat", "Zombie", "Skeleton", "Ghost"]
     rand_beast = random.choice(beasts)
 
@@ -69,6 +66,7 @@ def battle_code_lite(health, inventory, active_effects):
             return health
         else:
             print("You died.")
+            print("Debug statement - Testing battle_code_lite")
             # time.sleep(3)
             print("Health: " + str(health))
             time_stop_death = time.perf_counter()
@@ -77,6 +75,7 @@ def battle_code_lite(health, inventory, active_effects):
             active_effects = {}
             achievements = []
             return health
+
 
 # TODO: revise these two functions below
 def battle_code_lite_2(health):
@@ -174,7 +173,7 @@ def battle_code_killer(health, inventory, active_effects):
         # time.sleep(3)
         return health
 
-def battle_code_killer_2(result, health, inventory, active_effects, achievements):
+def battle_code_killer_2(result, health, inventory, active_effects, achievements, loop):
     if (result == 1):
         # time.sleep(3)
         print("You have completed Lanzix 2.")
@@ -196,6 +195,7 @@ def battle_code_killer_2(result, health, inventory, active_effects, achievements
     else:
         # time.sleep(3)
         print("You died.")
+        print("Debug statement - Testing battle_code_killer_2")
         time_stop_death = time.perf_counter()
         print(f"{time_stop_death}")
         inventory = {}
@@ -203,6 +203,7 @@ def battle_code_killer_2(result, health, inventory, active_effects, achievements
         achievements = []
         health = 0
         print(f"You had {health} amount of health left")
+        loop = 0
         return health
 
 def battle_killer_start():
@@ -226,7 +227,7 @@ def effects_display(active_effects):
     print("Active effects:")
     print(active_effects)
 
-def wait_sequence(health, inventory, active_effects, achievements):
+def wait_sequence(health, inventory, active_effects, achievements, loop):
     rand_good = ["Max health", "Knife"]
     rand_bad = ["Killer interaction", "Enemy interaction"]
     # time.sleep(3)
@@ -259,8 +260,9 @@ def wait_sequence(health, inventory, active_effects, achievements):
             # time.sleep(3)
             battle_killer_start()
             aaron = battle_code_killer(health, inventory, active_effects)
-            health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+            health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
             if (health <= 0):
+                print("Debug statement - Testing wait_sequence")
                 # time.sleep(3)
                 print("You died.")
                 time_stop_death = time.perf_counter()
@@ -268,10 +270,12 @@ def wait_sequence(health, inventory, active_effects, achievements):
                 inventory = {}
                 active_effects = {}
                 achievements = []
+                loop = 1
             else:
                 return health
+            # return health
         else:
-            health = battle_code_lite(health, inventory, active_effects)
+            health = battle_code_lite(health, inventory, active_effects, loop)
             return health
 
 
@@ -592,6 +596,7 @@ def main():
     inventory = {}
     active_effects = {}
     achievements = []
+    health = 100
     opening_screen()
 
     # loop 1 is the loop you get sent back to if you die
@@ -624,11 +629,13 @@ def main():
 
                     if (explore_b.lower() == "1"):
                         explore_message_b_1()
-                        health = battle_code_lite(health, inventory, active_effects)
+                        health = battle_code_lite(health, inventory, active_effects, loop)
                         # TODO: revise this variable
-                        aaron = battle_code_lite_2(health)
-
-                        loop = battle_code_lite_destination(aaron)
+                        #aaron = battle_code_lite(health)
+                        if (health <= 0):
+                            loop = 1
+                        else:
+                            loop = 2
                         continue
 
                     if (explore_b.lower() == "2"):
@@ -674,7 +681,7 @@ def main():
 
             # wait sequence and battle code sequence are defined for life_loop and death_loop
             if (intro_a.lower() == "wait"):
-                health = wait_sequence(health, inventory, active_effects)
+                health = wait_sequence(health, inventory, active_effects, achievements)
                 continue
 
             if (intro_a.lower() == "juan" or intro_a.lower() == "spencer"):
@@ -700,15 +707,19 @@ def main():
 
                         choice_a = input("What do you do? ")
                         if (choice_a.lower() == "1"):
-                            health = wait_sequence(health, inventory, active_effects, achievements)
-                            print(health)
-                            if  (health <= 0):
+                            # loop = 3
+                            loop = wait_sequence(health, inventory, active_effects, achievements, loop)
+                            print(loop)
+
+                            # commented out this conditional selection
+                            """if  (health <= 0):
                                 print(health)
                                 loop = 1
                                 continue
                             else:
                                 loop = 3
-                                continue
+                                continue"""
+
                             continue
 
                         if (choice_a.lower() == "2"):
@@ -1014,7 +1025,7 @@ def main():
                     # time.sleep(3)
                     battle_killer_start()
                     aaron = battle_code_killer(health, inventory, active_effects)
-                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                     if (health <= 0):
                         print(health)
                         loop = 1
