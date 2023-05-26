@@ -1,4 +1,3 @@
-
 import random
 import time
 
@@ -915,8 +914,8 @@ def main():
 
                                         else:
                                             print("Are you sure you don't want the feather?")
-                                            time.sleep(3)
-                                            continue
+                                        # time.sleep(3)
+                                        continue
 
                                     if ("Feather" in inventory and "Knife" in inventory):
                                         # time.sleep(3)
@@ -993,10 +992,10 @@ def main():
                                     else:
                                         loop = 3
                                         continue
-                                    # i am assuming that we go back to choice selection loop
+                                    # I am assuming that we go back to choice selection loop
                                     # break
                                     # break
-                                    continue
+                                    # continue
 
                         if (choice_a.lower() == "5" and "Golden ring" in inventory):
                             # time.sleep(3)
@@ -1033,6 +1032,5 @@ def main():
                     else:
                         loop = 2
                         continue
-                    continue
 
 main()

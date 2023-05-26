@@ -53,3 +53,83 @@ Let the user be able to define the time.sleep argument
 
 Notes:
 Issues we've been having - the loops we have been writing haven't been working how we intended
+
+5/25 - Play test output
+Lanzix 2
+Objective: Escape.
+You wake up in a dark cave.
+You cannot see anything in the darkness.
+New run start:
+What do you do? go
+You take a step forward...
+You still cannot see anything in the darkness
+Do you look around for light? y
+You look around for light...
+You do not see anything.
+You hear a human scream deeper in the tunnel.
+1: Approach quietly
+2: Approach
+Do you go towards the scream? 1
+You used stealth to approach the scream.
+Once you get there...
+You see a figure holding a torch standing over a dead body.
+Because you quietly approach you did not alert the figure to yourself.
+The figure walks away from you leaving you in the darkness.
+With the dead body.
+Suddenly a Werewolf attacks you!
+You have no choice but to face Werewolf in combat.
+Test Quote 3
+The Werewolf deals 12 damage.
+Health: 88
+What do you do? Run
+You decide to Run
+Suddenly two torches light up two opposite ends of the cave you're in.
+You notice three pressure plates in addition to the two torches.
+Many vines and plants cover the walls of the room you're in.
+Do you investigate the room further? y
+Upon further investigation you notice a mysterious liquid leaking from the ceiling into a rough stone basin in the middle of the room.
+Everything is silent.
+What do you do?
+1 = Wait and do not move
+2 = Investigate the pressure plates
+3 = Investigate the plants
+4 = sleep
+5 = Investigate the liquid and stone basin
+What do you do? 5
+You approach the stone basin and it's strange contents.
+As you get closer a rancid stench confronts you.
+There are puddles around the stone basin.
+You notice steam around the basin now that you are directly in front of it.
+You peer into the bottom of the basin and see a golden ring.
+Do you attempt to take the ring? y
+You got the Golden ring
+Inventory Includes:
+{'Golden ring': 1}
+What do you do?
+1 = Wait and do not move
+2 = Investigate the pressure plates
+3 = Investigate the plants
+4 = sleep
+5 = Investigate the liquid and stone basin
+
+Check the code below and discuss/fix
+
+What do you do? 1
+You wait for sometime.
+Suddenly a Werewolf attacks you!
+You have no choice but to face Werewolf in combat.
+Test Quote 2
+The Werewolf deals 1 damage.
+Health: 87
+87
+The killer hears you! He rushes over to you!
+Quickly, you prepare for battle
+You take 361 damage.
+Health: -273
+You died.
+Debug statement - Testing battle_code_killer_2
+378.612124208
+You had 0 amount of health left
+0
+New run start:
+What do you do?
