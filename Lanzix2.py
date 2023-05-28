@@ -1,9 +1,12 @@
 import random
 import time
 
+
 time_chase = random.randint(10, 60)
+# Do we even use time chase anymore? I don't think so.
+
 health = 100
-quote_during_battle = ["Never should have come here!", "Test Quote 2", "Test Quote 3"]
+quote_during_battle = ["Never should have come here!", "Take this!", "I've got you!"]
 
 user_yes = ["yes", "yeah", "yep", "y", "ye", "yea", "ok", "okay", "affirmative", "sounds good", "you got it",
             "whatever", "sure", "if i have to", "yeh", "yah"]
@@ -83,8 +86,8 @@ def battle_code_lite_2(health):
     else:
         return "death"
 
-def battle_code_lite_destination(result):
-    if result == "survive":
+def battle_code_lite_destination(result,):
+    if (result == "survive"):
         loop = 2
         return loop
     else:
