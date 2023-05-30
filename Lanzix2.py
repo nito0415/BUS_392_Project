@@ -122,7 +122,7 @@ def battle_code_killer(health, inventory, active_effects):
                     # time.sleep(3)
                     print("The killer lies motionless on the cave floor.")
                     # time.sleep(3)
-                    return 1
+                    return "1"
                 else:
                     # time.sleep(3)
                     print("The killer dodged your attack!")
@@ -137,7 +137,7 @@ def battle_code_killer(health, inventory, active_effects):
                         # time.sleep(3)
                         print("You are left in the darkness as you were.")
                         # time.sleep(3)
-                        return 3
+                        return "3"
                     else:
                         continue
 
@@ -152,7 +152,7 @@ def battle_code_killer(health, inventory, active_effects):
                 print("The killer seeing that you are immune to his attacks runs off into the darkness.")
                 # time.sleep(3)
                 loop = [2]
-                return 3
+                return "3"
             else:
                 # time.sleep(3)
                 print("The killer cannot kill you because of your powerful energy.")
@@ -162,7 +162,7 @@ def battle_code_killer(health, inventory, active_effects):
                 print("The killer seeing that you are immune to his attacks runs off into the darkness.")
                 # time.sleep(3)
                 loop = [2]
-                return 3
+                return "3"
 
 
     else:
@@ -172,10 +172,10 @@ def battle_code_killer(health, inventory, active_effects):
         print(f"You take {damage} damage.")
         print("Health: " + str(health))
         # time.sleep(3)
-        return 2
+        return "2"
 
 def battle_code_killer_2(result, health, inventory, active_effects, achievements, loop):
-    if (result == 1):
+    if (result == "1"):
         # time.sleep(3)
         print("You have completed Lanzix 2.")
         # time.sleep(3)
@@ -189,14 +189,19 @@ def battle_code_killer_2(result, health, inventory, active_effects, achievements
         time_stop_win = time.perf_counter()
         print(f"It took this much time to complete the game: {time_stop_win}")
         exit()
-    if (result == 3):
+    if (result == "3"):
         # time.sleep(3)
         # TODO: define what happens when killer runs away
         loop = [2]
         return health
     
     # this is if you lose, you die
-    else:
+    elif (result == "2"):
+        damage = random.randint(120, 999)
+        health -= damage
+        # time.sleep(3)
+        print(f"You take {damage} damage.")
+        print("Health: " + str(health))
         # time.sleep(3)
         print("You died.")
         print("Debug statement - Testing battle_code_killer_2")
@@ -924,7 +929,7 @@ def main():
 
                                         battle_killer_start()
                                         aaron = battle_code_killer(health, inventory, active_effects)
-                                        battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
+                                        health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                         # i am assuming that two breaks will take us back two loops
                                         # loop = [4]
                                         # break
