@@ -1,11 +1,7 @@
 import random
 import time
 
-
-time_chase = random.randint(10, 60)
-# Do we even use time chase anymore? I don't think so.
-
-loop = [[]]
+loop = []
 health = 100
 quote_during_battle = ["Never should have come here!", "Take this!", "I've got you!"]
 
@@ -799,7 +795,6 @@ def main():
                                                 if (wizard_questions.lower() == "4"):
                                                     wizard_question_4()
                                                     # TODO: revise the loops and fix
-                                                    explore_a = "rrty"
                                                     loop = [2]
                                                     #break
                                                     #break
@@ -817,7 +812,7 @@ def main():
 
                                         else:
                                             approach_wizard_no()
-                                            achievement_unlocked("Learn your name")
+                                            achievement_unlocked("Learn your name", achievements)
                                             # time.sleep(3)
                                             continue
 
