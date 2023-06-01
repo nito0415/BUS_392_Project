@@ -34,6 +34,11 @@ def achievement_unlocked(award, achievements):
         pass
 
 
+
+""""
+# Commenting out these to test with the chatGPT generated functions
+# This is our functions
+# Comment Block Start >>>>>>
 def battle_code_lite(health, inventory, active_effects, loop):
     beasts = ["Werewolf", "Bat", "Zombie", "Skeleton", "Ghost"]
     rand_beast = random.choice(beasts)
@@ -126,14 +131,9 @@ def battle_code_killer(health, inventory, active_effects):
                     # time.sleep(3)
                     print("The killer lies motionless on the cave floor.")
                     # time.sleep(3)
-<<<<<<< Updated upstream
-                    return 1
-                    # TODO: possibly look into this break
-                    break
-=======
                     killer = 2
                     return "1"
->>>>>>> Stashed changes
+
                 else:
                     # time.sleep(3)
                     print("The killer dodged your attack!")
@@ -148,13 +148,9 @@ def battle_code_killer(health, inventory, active_effects):
                         # time.sleep(3)
                         print("You are left in the darkness as you were.")
                         # time.sleep(3)
-<<<<<<< Updated upstream
-                        return 2
-=======
                         killer = 2
                         return "3"
 
->>>>>>> Stashed changes
                     else:
                         killer = 3
                         continue
@@ -182,17 +178,7 @@ def battle_code_killer(health, inventory, active_effects):
 
 
     else:
-<<<<<<< Updated upstream
-        damage = random.randint(120, 999)
-        health -= damage
-        # time.sleep(3)
-        print(f"You take {damage} damage.")
-        print("Health: " + str(health))
-        # time.sleep(3)
-        return health
-=======
         return "2"
->>>>>>> Stashed changes
 
 def battle_code_killer_2(result, health, inventory, active_effects, achievements, loop):
     if (result == 1):
@@ -226,6 +212,192 @@ def battle_code_killer_2(result, health, inventory, active_effects, achievements
         print(f"You had {health} amount of health left")
         loop = 0
         return health
+        
+# Comment Block Stop <<<<<<<<<
+"""
+# The Following is what CHAT GPT said should fix our battle code:
+# New defined functions start here >>>>>>>
+def battle_code_lite(health, inventory, active_effects,achievements, loop):
+    beasts = ["Werewolf", "Bat", "Zombie", "Skeleton", "Ghost"]
+    rand_beast = random.choice(beasts)
+
+    print(f"Suddenly a {rand_beast} attacks you!")
+    # time.sleep(3)
+    print(f"You have no choice but to face {rand_beast} in combat.")
+    # time.sleep(3)
+
+    if "Feather" in inventory or "Powerful energy" in active_effects:
+        print("You cannot be harmed in battle!")
+        # time.sleep(3)
+        print("The beast runs away.")
+        # time.sleep(3)
+        print("You continue on your journey.")
+        loop[0] = 2
+        return health
+
+    else:
+        damage = random.randint(0, 20)
+        health -= damage
+        if damage == 0:
+            print("You dodged the attack!")
+            # time.sleep(3)
+            print("You continue on your journey.")
+            # time.sleep(3)
+            loop[0] = 2
+            return health
+        if health > 0:
+            print(random.choice(quote_during_battle))
+            # time.sleep(3)
+            print(f"The {rand_beast} deals {str(damage)} damage.")
+            # time.sleep(3)
+            print("Health: " + str(health))
+            return health
+        else:
+            print("You died.")
+            print("Debug statement - Testing battle_code_lite")
+            # time.sleep(3)
+            print("Health: " + str(health))
+            time_stop_death = time.perf_counter()
+            print(f"{time_stop_death}")
+            inventory.clear()
+            active_effects.clear()
+            achievements.clear()
+            health = 0
+            loop[0] = 1  # Respawn at the first loop
+            return health
+
+
+# TODO: revise these two functions below - could die in any part of the game
+def battle_code_lite_2(health):
+    if health > 0:
+        return "survive"
+    else:
+        return "death"
+
+
+def battle_code_lite_destination(result, loop):
+    if result == "survive":
+        loop[0] = 2
+    else:
+        loop[0] = 1
+
+
+# need int data type
+# changing victory = 1, loss = 2, runs away = 3
+def battle_code_killer(health, inventory, active_effects, loop):
+    battle_quote = ['''"You never should have come here!"''', '''"I've got you now!"''',
+                    '''"Don't even try to escape!"''', '''Die!''']
+    quote_during_battle = random.choice(battle_quote)
+
+    if "Feather" in inventory or "Powerful energy" in active_effects:
+        # time.sleep(1)
+        print(f"The Killer says: {quote_during_battle}")
+        # time.sleep(3)
+        print("However, the killer cannot stop you, you have the upper hand!")
+        # time.sleep(3)
+        if "Knife" in inventory and "Feather" in inventory:
+            # time.sleep(3)
+            print("You are undefeatable because you carry the killer's feather!")
+            # time.sleep(3)
+            print("You are able to fight because you carry the knife!")
+            # time.sleep(3)
+            count = 1
+            killer = 3
+            while killer == 3:
+                rand_chance = random.randint(1, 3)
+                if rand_chance == 2:
+                    # time.sleep(3)
+                    print("You defeat the killer!")
+                    # time.sleep(3)
+                    print("The killer lies motionless on the cave floor.")
+                    # time.sleep(3)
+                    killer = 2
+                    return "1"
+                else:
+                    # time.sleep(3)
+                    print("The killer dodged your attack!")
+                    count += 1
+                    # time.sleep(3)
+                    print("You prepare for your next attack!")
+                    # time.sleep(3)
+                    killer_run = random.randint(3, 5)
+                    if count == killer_run:
+                        # time.sleep(3)
+                        print("The killer runs away!")
+                        # time.sleep(3)
+                        print("You are left in the darkness as you were.")
+                        # time.sleep(3)
+                        killer = 2
+                        return "3"
+                    else:
+                        killer = 3
+                        continue
+        else:
+            if "Knife" not in inventory:
+                # time.sleep(3)
+                print("The killer cannot kill you because of your powerful energy.")
+                # time.sleep(3)
+                print("However, you cannot kill the killer because you don't have a weapon.")
+                # time.sleep(3)
+                print("The killer, seeing that you are immune to his attacks, runs off into the darkness.")
+                # time.sleep(3)
+                loop[0] = 2
+                return "3"
+            else:
+                # time.sleep(3)
+                print("The killer cannot kill you because of your powerful energy.")
+                # time.sleep(3)
+                print("You attack with your weapon, but it does not seem to do any damage.")
+                # time.sleep(3)
+                print("The killer, seeing that you are immune to his attacks, runs off into the darkness.")
+                # time.sleep(3)
+                loop[0] = 2
+                return "3"
+    else:
+        return "2"
+
+
+def battle_code_killer_2(result, health, inventory, active_effects, achievements, loop):
+    if result == "1":
+        # time.sleep(3)
+        print("You have completed Lanzix 2.")
+        # time.sleep(3)
+        print("Thank you for playing!")
+        # time.sleep(3)
+        print(f"You have completed {len(achievements)} achievements!")
+        # time.sleep(3)
+        print("Achievements:")
+        print(achievements)
+        # time.sleep(3)
+        time_stop_win = time.perf_counter()
+        print(f"It took this much time to complete the game: {time_stop_win}")
+        exit()
+    if result == "3":
+        # time.sleep(3)
+        # TODO: define what happens when the killer runs away
+        loop[0] = 2
+        return health
+
+    # This is if you lose, you die
+    elif result == "2":
+        damage = random.randint(120, 999)
+        health -= damage
+        # time.sleep(3)
+        print(f"You take {damage} damage.")
+        print("Health: " + str(health))
+        # time.sleep(3)
+        print("You died.")
+        print("Debug statement - Testing battle_code_killer_2")
+        time_stop_death = time.perf_counter()
+        print(f"{time_stop_death}")
+        inventory.clear()
+        active_effects.clear()
+        achievements.clear()
+        health = 0
+        loop[0] = 1  # Respawn at the first loop
+        return health
+
+# Chat GPT defined functions stop <<<<<<
 
 def battle_killer_start():
     # time.sleep(3)
@@ -280,7 +452,7 @@ def wait_sequence(health, inventory, active_effects, achievements, loop):
         if (choice == "Killer interaction"):
             # time.sleep(3)
             battle_killer_start()
-            aaron = battle_code_killer(health, inventory, active_effects)
+            aaron = battle_code_killer(health, inventory, active_effects, loop)
             health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
             if (health <= 0):
                 print("Debug statement - Testing wait_sequence")
@@ -652,17 +824,8 @@ def main():
                     if (explore_b.lower() == "1"):
                         explore_message_b_1()
                         health = battle_code_lite(health, inventory, active_effects, loop)
-<<<<<<< Updated upstream
-                        # TODO: revise this variable
-                        #aaron = battle_code_lite(health)
-                        if (health <= 0):
-                            loop = 1
-                        else:
-                            loop = 2
-=======
                         result = battle_code_lite_2(health)
                         battle_code_lite_destination(result, loop)
->>>>>>> Stashed changes
                         continue
 
                     if (explore_b.lower() == "2"):
@@ -675,8 +838,8 @@ def main():
                             explore_message_killer_yes()
 
                             battle_killer_start()
-                            aaron = battle_code_killer(health, inventory, active_effects)
-                            health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                            aaron = battle_code_killer(health, inventory, active_effects,  loop)
+                            health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                             continue
 
                     else:
@@ -696,20 +859,20 @@ def main():
                     print("You decide to " + explore_b)
                     # time.sleep(3)
                     battle_killer_start()
-                    aaron = battle_code_killer(health, inventory, active_effects)
-                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                    aaron = battle_code_killer(health, inventory, active_effects, loop)
+                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                     continue
                 else:
                     # This is regarding looking for light.
                     # This else is for if the user does not type a user_yes or user_no.
                     battle_killer_start()
-                    aaron = battle_code_killer(health, inventory, active_effects)
-                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                    aaron = battle_code_killer(health, inventory, active_effects, loop)
+                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                     continue
 
             # wait sequence and battle code sequence are defined for life_loop and death_loop
             if (intro_a.lower() == "wait"):
-                health = wait_sequence(health, inventory, active_effects, achievements)
+                health = wait_sequence(health, inventory, active_effects, achievements, loop)
                 continue
 
             if (intro_a.lower() == "juan" or intro_a.lower() == "spencer"):
@@ -785,15 +948,10 @@ def main():
                                 if ("Golden ring" in inventory):
                                     pressure_plate_2_survive()
                                     # this loop allows you to approach the wizard
-<<<<<<< Updated upstream
-                                    loop = 4
-                                    while (loop == 4):
-=======
                                     loop = [4]
 
                                     while (4 in loop):
 
->>>>>>> Stashed changes
                                         lake_wizard = input("Do you approach the wizard? ")
                                         if (lake_wizard.lower() in user_yes):
                                             pressure_plate_2_wizard()
@@ -822,26 +980,14 @@ def main():
                                                         loop = 5
                                                         continue
                                                     else:
-<<<<<<< Updated upstream
-                                                        pass
-                                                        loop = 5
-=======
                                                         loop = [5]
->>>>>>> Stashed changes
                                                         continue
 
 
                                                 if (wizard_questions.lower() == "4"):
                                                     wizard_question_4()
                                                     # TODO: revise the loops and fix
-<<<<<<< Updated upstream
-                                                    loop = 2
-                                                    #break
-                                                    #break
-                                                    #break
-=======
                                                     loop = [2]
->>>>>>> Stashed changes
                                                     continue
                                                 else:
                                                     # time.sleep(3)
@@ -866,12 +1012,7 @@ def main():
                                     achievements = []
                                     achievement_unlocked("Humpty Dumpty had a big fall.")
                                     # TODO: revise this break statement
-<<<<<<< Updated upstream
-                                    loop = 1
-                                    # break
-=======
                                     loop = [1]
->>>>>>> Stashed changes
                                     continue
 
                             if (choice_plate1.lower() == "3"):
@@ -913,8 +1054,8 @@ def main():
                                             if (hidden_passage_killer.lower() == "hide"):
                                                 plants_4()
                                                 battle_killer_start()
-                                                aaron = battle_code_killer(health, inventory, active_effects)
-                                                health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                                                aaron = battle_code_killer(health, inventory, active_effects, loop)
+                                                health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                                 #TODO: revise these break statements to be in line with rest of code
                                                 # i am assuming that two breaks will take us back two loops
                                                 loop = 4
@@ -927,8 +1068,8 @@ def main():
                                             if (hidden_passage_killer.lower() == "run"):
                                                 plants_5()
                                                 battle_killer_start()
-                                                aaron = battle_code_killer(health, inventory, active_effects)
-                                                health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                                                aaron = battle_code_killer(health, inventory, active_effects, loop)
+                                                health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                                 #TODO: revise these break statements to be in line with rest of code
                                                 # i am assuming that two breaks will take us back two loops
                                                 loop = 4
@@ -946,8 +1087,8 @@ def main():
                                                 achievement_unlocked("Ignore the parameters!")
                                                 plants_6(hidden_passage_killer)
                                                 battle_killer_start()
-                                                aaron = battle_code_killer(health, inventory, active_effects)
-                                                health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                                                aaron = battle_code_killer(health, inventory, active_effects, loop)
+                                                health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                                 # TODO: revise these break statements to be in line with rest of code
                                                 # i am assuming that two breaks will take us back two loops
                                                 loop = 4
@@ -968,8 +1109,8 @@ def main():
                                         print("You are prepared for battle.")
 
                                         battle_killer_start()
-                                        aaron = battle_code_killer(health, inventory, active_effects)
-                                        battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                                        aaron = battle_code_killer(health, inventory, active_effects, loop)
+                                        battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                         # i am assuming that two breaks will take us back two loops
                                         loop = 4
                                         # break
@@ -982,8 +1123,8 @@ def main():
                                         # time.sleep(3)
 
                                         battle_killer_start()
-                                        aaron = battle_code_killer(health, inventory, active_effects)
-                                        health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                                        aaron = battle_code_killer(health, inventory, active_effects, loop)
+                                        health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                         # i am assuming that two breaks will take us back two loops
                                         loop = 4
                                         # break
@@ -1029,8 +1170,8 @@ def main():
                                     # time.sleep(3)
 
                                     battle_killer_start()
-                                    aaron = battle_code_killer(health, inventory, active_effects)
-                                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
+                                    aaron = battle_code_killer(health, inventory, active_effects, loop)
+                                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                                     if (health <= 0):
                                         # print(health)
                                         loop = 1
@@ -1047,7 +1188,7 @@ def main():
                             # time.sleep(3)
                             print("You've already been here.")
                             # time.sleep(3)
-                            achievement_unlocked("Thorough explorer")
+                            achievement_unlocked("Thorough explorer", achievements)
                         else:
                             # time.sleep(3)
                             continue
@@ -1056,26 +1197,15 @@ def main():
                     inspect_no()
 
                     battle_killer_start()
-                    aaron = battle_code_killer(health, inventory, active_effects)
-<<<<<<< Updated upstream
-                    health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements)
-                    if (health <= 0):
-                        print(health)
-                        loop = 1
-                        continue
-                    else:
-                        loop = 2
-                        continue
-=======
+                    aaron = battle_code_killer(health, inventory, active_effects, loop)
                     health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
 
                     continue
->>>>>>> Stashed changes
 
                 else:
                     # time.sleep(3)
                     battle_killer_start()
-                    aaron = battle_code_killer(health, inventory, active_effects)
+                    aaron = battle_code_killer(health, inventory, active_effects, loop)
                     health = battle_code_killer_2(aaron, health, inventory, active_effects, achievements, loop)
                     if (health <= 0):
                         print(health)
@@ -1086,218 +1216,3 @@ def main():
                         continue
 
 main()
-
-
-
-
-# The Following is what CHAT GPT said should fix our battle code:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import random
-
-
-# Assuming you have variables like health, inventory, active_effects, loop, player_died
-
-def battle_code_lite(health, inventory, active_effects, loop):
-    beasts = ["Werewolf", "Bat", "Zombie", "Skeleton", "Ghost"]
-    rand_beast = random.choice(beasts)
-
-    print(f"Suddenly a {rand_beast} attacks you!")
-    # time.sleep(3)
-    print(f"You have no choice but to face {rand_beast} in combat.")
-    # time.sleep(3)
-
-    if "Feather" in inventory or "Powerful energy" in active_effects:
-        print("You cannot be harmed in battle!")
-        # time.sleep(3)
-        print("The beast runs away.")
-        # time.sleep(3)
-        print("You continue on your journey.")
-        loop[0] = 2
-        return health
-
-    else:
-        damage = random.randint(0, 20)
-        health -= damage
-        if damage == 0:
-            print("You dodged the attack!")
-            # time.sleep(3)
-            print("You continue on your journey.")
-            # time.sleep(3)
-            loop[0] = 2
-            return health
-        if health > 0:
-            print(random.choice(quote_during_battle))
-            # time.sleep(3)
-            print(f"The {rand_beast} deals {str(damage)} damage.")
-            # time.sleep(3)
-            print("Health: " + str(health))
-            return health
-        else:
-            print("You died.")
-            print("Debug statement - Testing battle_code_lite")
-            # time.sleep(3)
-            print("Health: " + str(health))
-            time_stop_death = time.perf_counter()
-            print(f"{time_stop_death}")
-            inventory.clear()
-            active_effects.clear()
-            achievements.clear()
-            health = 0
-            loop[0] = 1  # Respawn at the first loop
-            return health
-
-
-# TODO: revise these two functions below - could die in any part of the game
-def battle_code_lite_2(health):
-    if health > 0:
-        return "survive"
-    else:
-        return "death"
-
-
-def battle_code_lite_destination(result, loop):
-    if result == "survive":
-        loop[0] = 2
-    else:
-        loop[0] = 1
-
-
-# need int data type
-# changing victory = 1, loss = 2, runs away = 3
-def battle_code_killer(health, inventory, active_effects):
-    battle_quote = ['''"You never should have come here!"''', '''"I've got you now!"''',
-                    '''"Don't even try to escape!"''', '''Die!''']
-    quote_during_battle = random.choice(battle_quote)
-
-    if "Feather" in inventory or "Powerful energy" in active_effects:
-        # time.sleep(1)
-        print(f"The Killer says: {quote_during_battle}")
-        # time.sleep(3)
-        print("However, the killer cannot stop you, you have the upper hand!")
-        # time.sleep(3)
-        if "Knife" in inventory and "Feather" in inventory:
-            # time.sleep(3)
-            print("You are undefeatable because you carry the killer's feather!")
-            # time.sleep(3)
-            print("You are able to fight because you carry the knife!")
-            # time.sleep(3)
-            count = 1
-            killer = 3
-            while killer == 3:
-                rand_chance = random.randint(1, 3)
-                if rand_chance == 2:
-                    # time.sleep(3)
-                    print("You defeat the killer!")
-                    # time.sleep(3)
-                    print("The killer lies motionless on the cave floor.")
-                    # time.sleep(3)
-                    killer = 2
-                    return "1"
-                else:
-                    # time.sleep(3)
-                    print("The killer dodged your attack!")
-                    count += 1
-                    # time.sleep(3)
-                    print("You prepare for your next attack!")
-                    # time.sleep(3)
-                    killer_run = random.randint(3, 5)
-                    if count == killer_run:
-                        # time.sleep(3)
-                        print("The killer runs away!")
-                        # time.sleep(3)
-                        print("You are left in the darkness as you were.")
-                        # time.sleep(3)
-                        killer = 2
-                        return "3"
-                    else:
-                        killer = 3
-                        continue
-        else:
-            if "Knife" not in inventory:
-                # time.sleep(3)
-                print("The killer cannot kill you because of your powerful energy.")
-                # time.sleep(3)
-                print("However, you cannot kill the killer because you don't have a weapon.")
-                # time.sleep(3)
-                print("The killer, seeing that you are immune to his attacks, runs off into the darkness.")
-                # time.sleep(3)
-                loop[0] = 2
-                return "3"
-            else:
-                # time.sleep(3)
-                print("The killer cannot kill you because of your powerful energy.")
-                # time.sleep(3)
-                print("You attack with your weapon, but it does not seem to do any damage.")
-                # time.sleep(3)
-                print("The killer, seeing that you are immune to his attacks, runs off into the darkness.")
-                # time.sleep(3)
-                loop[0] = 2
-                return "3"
-    else:
-        return "2"
-
-
-def battle_code_killer_2(result, health, inventory, active_effects, achievements, loop):
-    if result == "1":
-        # time.sleep(3)
-        print("You have completed Lanzix 2.")
-        # time.sleep(3)
-        print("Thank you for playing!")
-        # time.sleep(3)
-        print(f"You have completed {len(achievements)} achievements!")
-        # time.sleep(3)
-        print("Achievements:")
-        print(achievements)
-        # time.sleep(3)
-        time_stop_win = time.perf_counter()
-        print(f"It took this much time to complete the game: {time_stop_win}")
-        exit()
-    if result == "3":
-        # time.sleep(3)
-        # TODO: define what happens when the killer runs away
-        loop[0] = 2
-        return health
-
-    # This is if you lose, you die
-    elif result == "2":
-        damage = random.randint(120, 999)
-        health -= damage
-        # time.sleep(3)
-        print(f"You take {damage} damage.")
-        print("Health: " + str(health))
-        # time.sleep(3)
-        print("You died.")
-        print("Debug statement - Testing battle_code_killer_2")
-        time_stop_death = time.perf_counter()
-        print(f"{time_stop_death}")
-        inventory.clear()
-        active_effects.clear()
-        achievements.clear()
-        health = 0
-        loop[0] = 1  # Respawn at the first loop
-        return health
-
