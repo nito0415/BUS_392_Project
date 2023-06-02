@@ -133,17 +133,3 @@ You had 0 amount of health left
 0
 New run start:
 What do you do?
-
-# TODO:
-
-Fix battle functions and the wait sequence
-
-Test code and all possibilities
-
-Tidy up the output, if time allows
-
-Potential issues - battle_code_killer is not going into battle_code_killer_2
-
-battle_code_lite works
-
-refactor battle_code_killer to be like battle_code_lite
