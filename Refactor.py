@@ -1104,6 +1104,4 @@ def main():
                     health = result[0]
                     loop = result[1]
                     continue
-
-
 main()
