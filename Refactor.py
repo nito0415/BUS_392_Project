@@ -275,7 +275,7 @@ def fight_killer(health_param, loop_param, inventory_param, active_effects_param
             health_param -= damage
             # time.sleep(3)
             print(f"You take {damage} damage.")
-            print("Health: " + str(health))
+            print("Health: " + str(health_param))
             # time.sleep(3)
             loop_param = 1
             return health_param, loop_param
