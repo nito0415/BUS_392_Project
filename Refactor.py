@@ -344,6 +344,10 @@ def wait_sequence(health_param, loop_param, inventory_param, active_effects_para
             loop_param = loop_param
             return health_param, loop_param
         else:
+            # I don't think we get the knife in our
+            # inventory here.
+            # TODO: Pass the global inventory dictionary
+            # TODO: Append the global inventory dictionary
             print("You sit alone with your thoughts.")
             # time.sleep(3)
             print("Out of the corner of your eye, you see a knife.")
