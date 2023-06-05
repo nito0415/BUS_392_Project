@@ -162,3 +162,22 @@ What do you do?
 
 - Loop resets to the beginning of the game
 - ## *Working as expected*
+
+## Third Test Case
+
+- What do you do? >? Run
+You decide to Run
+Suddenly two torches light up two opposite ends of the cave you're in.
+You notice three pressure plates in addition to the two torches.
+Many vines and plants cover the walls of the room you're in.
+- Do you investigate the room further? >? n
+The killer hears you! He rushes over to you!
+Quickly, you prepare for battle
+The Killer says: Die!
+You take 760 damage.
+Health: -660
+New run start: 
+What do you do? 
+
+- Killer kills the player if they do not investigate the room
+- ## *Working as expected*
