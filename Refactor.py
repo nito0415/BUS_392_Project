@@ -1039,39 +1039,38 @@ def main():
                             if hidden_passage.lower() in user_yes and "golden ring" in inventory:
                                 plants_2()
                                 # this loop is for acquiring the feather
-                                loop = 6
-                                while loop == 6:
-                                    # time.sleep(3)
-                                    if "feather" not in inventory:
-                                        hidden_passage_feather = input("Do you take the feather? ")
 
-                                        if hidden_passage_feather.lower() in user_yes:
-                                            plants_3()
-                                            inventory["feather"] = 1
-                                            # time.sleep(3)
-                                            print(inventory)
-                                            battle_killer_start(wizard)
-                                            result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
-                                            health = result[0]
-                                            loop = result[1]
-                                            continue
-                                        else:
-                                            print("Are you sure you don't want the feather?")
-                                            # time.sleep(3)
-                                            battle_killer_start(wizard)
-                                            result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
-                                            health = result[0]
-                                            loop = result[1]
-                                            continue
-                                    else:
+                                # time.sleep(3)
+                                if "feather" not in inventory:
+                                    hidden_passage_feather = input("Do you take the feather? ")
+
+                                    if hidden_passage_feather.lower() in user_yes:
+                                        plants_3()
+                                        inventory["feather"] = 1
                                         # time.sleep(3)
-                                        print("The killer is walking through the room when he spots you!")
+                                        print(inventory)
+                                        battle_killer_start(wizard)
+                                        result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
+                                        health = result[0]
+                                        loop = result[1]
+                                        continue
+                                    else:
+                                        print("Are you sure you don't want the feather?")
                                         # time.sleep(3)
                                         battle_killer_start(wizard)
                                         result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
                                         health = result[0]
                                         loop = result[1]
                                         continue
+                                else:
+                                    # time.sleep(3)
+                                    print("The killer is walking through the room when he spots you!")
+                                    # time.sleep(3)
+                                    battle_killer_start(wizard)
+                                    result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
+                                    health = result[0]
+                                    loop = result[1]
+                                    continue
 
                             if hidden_passage.lower() in user_no:
                                 achievement_unlocked("Don't go in the passageway!", achievements)
