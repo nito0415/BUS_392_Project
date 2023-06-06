@@ -148,89 +148,6 @@ def fight_beast(health_param, loop_param, inventory_param, active_effects_param,
                     # time.sleep(3)
                     loop_param = loop_param
                     return health_param, loop_param
-<<<<<<< Updated upstream
-
-    else:
-        print("You have no weapon!")
-        # time.sleep(3)
-        print("You can only run!")
-        # time.sleep(3)
-
-        chance_to_run = random.randint(0, 1)
-        if chance_to_run == 0:
-            print("You ran away!")
-            # time.sleep(3)
-            print("You continue on your journey.")
-            # time.sleep(3)
-            loop_param = loop_param
-            return health_param, loop_param
-        else:
-            print("You failed to run away!")
-            # time.sleep(3)
-            print("The beast attacks!")
-            # time.sleep(3)
-            damage = random.randint(0, 20)
-            print(f"The {beast} deals {damage} damage.")
-            # time.sleep(3)
-            print(f"Health: {health_param}")
-            health_param -= damage
-            result = handle_death(health_param, loop_param)
-            health_param = result[0]
-            loop_param = result[1]
-            return health_param, loop_param
-
-
-# we will need to define a function to handle the killer's battle sequence
-def fight_killer(health_param, loop_param, inventory_param, active_effects_param, achievements_param):
-    battle_quote = ['''"You never should have come here!"''', '''"I've got you now!"''',
-                    '''"Don't even try to escape!"''', '''Die!''']
-    quote_during_battle = random.choice(battle_quote)
-    # killer = "alive"
-    global inventory
-    global active_effects
-    global achievements
-
-    # time.sleep(1)
-    print(f"The Killer says: {quote_during_battle}")
-    # time.sleep(3)
-    if weapon_check(inventory_param):
-        if feather_check(inventory_param):
-            # time.sleep(3)
-            print("You are undefeatable because you carry the killers feather!")
-            # time.sleep(3)
-            print("You are able to fight because you carry the knife!")
-            # time.sleep(3)
-            count = 1
-            while True:
-
-                rand_chance = random.randint(1, 3)
-                if rand_chance == 2:
-                    # time.sleep(3)
-                    print("You defeat the killer!")
-                    # time.sleep(3)
-                    print("The killer lies motionless on the cave floor.")
-                    # time.sleep(3)
-                    print("You have completed Lanzix 2.")
-                    # time.sleep(3)
-                    print("Thank you for playing!")
-                    # time.sleep(3)
-                    print(f"You have completed {get_achievements_length(achievements_param)} achievements!")
-                    # time.sleep(3)
-                    print("Achievements:")
-                    print(get_achievements(achievements_param))
-                    # time.sleep(3)
-                    time_stop_win = time.perf_counter()
-                    print(f"It took this much time to complete the game: {time_stop_win}")
-                    # killer = "dead"
-                    user_answer = input("Do you want to play again? (y/n)")
-                    if user_answer in user_yes:
-                        health_param = 100
-                        loop_param = 1
-                        return health_param, loop_param
-                    else:
-                        exit()
-=======
->>>>>>> Stashed changes
                 else:
                     chance_to_run = random.randint(0, 7)
                     if chance_to_run != 3:
@@ -426,11 +343,7 @@ def wait_sequence(health_param, loop_param, inventory_param, active_effects_para
     rand_num = random.randint(1, 8)
     if rand_num == 2:
         choice = random.choice(rand_good_event)
-<<<<<<< Updated upstream
-        if choice == "Max health":
-=======
-        if (choice == "max health"):
->>>>>>> Stashed changes
+        if choice == "max health":
             print("Suddenly a powerful energy touches you.")
             # time.sleep(3)
             print("Your health is restored!")
@@ -927,14 +840,8 @@ def main():
 
                         if explore_c.lower() in user_yes:
                             explore_message_killer_yes()
-
-<<<<<<< Updated upstream
-                            battle_killer_start()
-                            result = fight_killer(health, loop, inventory, active_effects, achievements)
-=======
                             battle_killer_start(wizard)
                             result = fight_killer(health, loop,  inventory, active_effects, achievements, wizard)
->>>>>>> Stashed changes
                             health = result[0]
                             loop = result[1]
                             continue
@@ -969,29 +876,17 @@ def main():
                     continue
 
             # wait sequence and battle code sequence are defined for life_loop and death_loop
-<<<<<<< Updated upstream
             if intro_a.lower() == "wait":
-                health = wait_sequence(health, inventory, active_effects, achievements, loop)
+                result = wait_sequence(health, inventory, active_effects, achievements, loop)
+                health = result[0]
+                loop = result[1]
                 continue
 
             if intro_a.lower() == "juan" or intro_a.lower() == "spencer":
-                inventory["Knife"] = 1
-                inventory["Feather"] = 1
-                inventory["Golden ring"] = 1
-                active_effects["Powerful energy"] = 1
-=======
-            if (intro_a.lower() == "wait"):
-                result = wait_sequence(health, inventory, active_effects, achievements, loop)
-                health = result[0]
-                loop = result [1]
-                continue
-
-            if (intro_a.lower() == "juan" or intro_a.lower() == "spencer"):
                 inventory["knife"] = 1
                 inventory["feather"] = 1
                 inventory["golden ring"] = 1
                 active_effects["powerful energy"] = 1
->>>>>>> Stashed changes
                 inventory_display(inventory)
                 loop = 2
                 continue
@@ -1049,29 +944,17 @@ def main():
                             if choice_plate1.lower() == "2":
                                 pressure_plate_2()
 
-<<<<<<< Updated upstream
-                                if "Golden ring" in inventory:
+                                if "golden ring" in inventory:
                                     pressure_plate_2_survive()
                                     # this loop allows you to approach the wizard
                                     loop = 4
-                                    while loop == 4:
-=======
-                                if ("golden ring" in inventory):
-                                    pressure_plate_2_survive()
-                                    # this loop allows you to approach the wizard
-                                    loop = 4
-                                    while (loop == 4 and loop != 1):
->>>>>>> Stashed changes
+                                    while loop == 4 and loop != 1:
                                         lake_wizard = input("Do you approach the wizard? ")
                                         if lake_wizard.lower() in user_yes:
                                             pressure_plate_2_wizard()
                                             # this loop lets you choose an option from the wizard
                                             loop = 5
-<<<<<<< Updated upstream
-                                            while loop == 5:
-=======
-                                            while (loop == 5 and loop != 1):
->>>>>>> Stashed changes
+                                            while loop == 5 and loop != 1:
                                                 wizard_ask()
 
                                                 wizard_questions = input("What do you ask the Wizard? ")
@@ -1133,32 +1016,18 @@ def main():
                                     loop = 1
                                     continue
 
-<<<<<<< Updated upstream
                             if choice_plate1.lower() == "3":
                                 knife_chance = random.randint(0, 5)
                                 achievement_unlocked("Examine pressure plate #3!", achievements)
 
                                 if knife_chance == 2 or knife_chance == 3:
-                                    inventory["Knife"] = 1
-=======
-
-                            if (choice_plate1.lower() == "3"):
-                                knife_chance = random.randint(0, 5)
-                                achievement_unlocked("Examine pressure plate #3!", achievements)
-
-                                if (knife_chance == 2 or knife_chance == 3):
                                     inventory["knife"] = 1
->>>>>>> Stashed changes
                                     print("You find a knife as you stepped on the pressure plate!")
                                     # time.sleep(3)
                                     inventory_display(inventory)
                                 else:
-<<<<<<< Updated upstream
-                                    result = fight_beast(health, loop, inventory, active_effects, achievements)
-=======
                                     battle_killer_start(wizard)
                                     result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
->>>>>>> Stashed changes
                                     health = result[0]
                                     loop = result[1]
                                     continue
@@ -1167,21 +1036,13 @@ def main():
                             plants_1()
 
                             hidden_passage = input("Do you attempt to go through the passageway? ")
-<<<<<<< Updated upstream
-                            if hidden_passage.lower() in user_yes and "Golden ring" in inventory:
-=======
-                            if (hidden_passage.lower() in user_yes and "golden ring" in inventory):
->>>>>>> Stashed changes
+                            if hidden_passage.lower() in user_yes and "golden ring" in inventory:
                                 plants_2()
                                 # this loop is for acquiring the feather
                                 loop = 6
                                 while loop == 6:
                                     # time.sleep(3)
-<<<<<<< Updated upstream
-                                    if "Feather" not in inventory:
-=======
-                                    if ("feather" not in inventory):
->>>>>>> Stashed changes
+                                    if "feather" not in inventory:
                                         hidden_passage_feather = input("Do you take the feather? ")
 
                                         if hidden_passage_feather.lower() in user_yes:
@@ -1189,51 +1050,11 @@ def main():
                                             inventory["feather"] = 1
                                             # time.sleep(3)
                                             print(inventory)
-<<<<<<< Updated upstream
-
-                                            hidden_passage_killer = input("What do you do(Run or Hide)? ")
-
-                                            if hidden_passage_killer.lower() == "hide":
-                                                plants_4()
-                                                battle_killer_start()
-                                                result = fight_killer(health, loop, inventory, active_effects,
-                                                                      achievements)
-                                                health = result[0]
-                                                loop = result[1]
-                                                continue
-
-                                            if hidden_passage_killer.lower() == "run":
-                                                plants_5()
-                                                battle_killer_start()
-                                                result = fight_killer(health, loop, inventory, active_effects,
-                                                                      achievements)
-                                                health = result[0]
-                                                loop = result[1]
-                                                continue
-
-                                            else:
-                                                # time.sleep(3)
-                                                print("You had two choices, (Run or Hide).")
-                                                # time.sleep(3)
-                                                print("But, you ignored them!!")
-                                                achievement_unlocked("Ignore the parameters!", achievements)
-                                                plants_6(hidden_passage_killer)
-                                                battle_killer_start()
-                                                result = fight_killer(health, loop, inventory, active_effects,
-                                                                      achievements)
-                                                health = result[0]
-                                                loop = result[1]
-                                                continue
-=======
                                             battle_killer_start(wizard)
                                             result = fight_killer(health, loop, inventory, active_effects, achievements, wizard)
                                             health = result[0]
                                             loop = result[1]
                                             continue
-
-
->>>>>>> Stashed changes
-
                                         else:
                                             print("Are you sure you don't want the feather?")
                                             # time.sleep(3)
@@ -1242,20 +1063,6 @@ def main():
                                             health = result[0]
                                             loop = result[1]
                                             continue
-
-<<<<<<< Updated upstream
-                                    if "Feather" in inventory and "Knife" in inventory:
-                                        # time.sleep(3)
-                                        print("You are prepared for battle.")
-
-                                        battle_killer_start()
-                                        result = fight_killer(health, loop, inventory, active_effects, achievements)
-                                        health = result[0]
-                                        loop = result[1]
-                                        continue
-=======
->>>>>>> Stashed changes
-
                                     else:
                                         # time.sleep(3)
                                         print("The killer is walking through the room when he spots you!")
@@ -1286,12 +1093,7 @@ def main():
                             print("You awake.")
                             # time.sleep(3)
                             continue
-
-<<<<<<< Updated upstream
-                        if choice_a.lower() == "5" and "Golden ring" not in inventory:
-=======
-                        if (choice_a.lower() == "5" and "golden ring" not in inventory):
->>>>>>> Stashed changes
+                        if choice_a.lower() == "5" and "golden ring" not in inventory:
                             basin_1()
 
                             basin = input("Do you attempt to take the ring? ")
@@ -1313,11 +1115,7 @@ def main():
                                     loop = result[1]
                                     continue
 
-<<<<<<< Updated upstream
-                        if choice_a.lower() == "5" and "Golden ring" in inventory:
-=======
-                        if (choice_a.lower() == "5" and "golden ring" in inventory):
->>>>>>> Stashed changes
+                        if choice_a.lower() == "5" and "golden ring" in inventory:
                             # time.sleep(3)
                             print("You've already been here.")
                             # time.sleep(3)
@@ -1343,10 +1141,4 @@ def main():
                     continue
         #  if loop != 1:
             # break
-
-
-
-
 main()
-
-
