@@ -697,8 +697,7 @@ def plants_2():
     print("You take the golden ring from the keyhole and continue through the passageway.")
     time.sleep(3)
     print("You wind up in a room with tables and notes and papers on those tables.")
-    time.sleep(3)
-    print("You see a feather on a table.")
+
 
 
 def plants_3():
@@ -890,6 +889,7 @@ def main():
                     # loop 3 is the loop that lets you make choices to explore the room
                     loop = 3
                     while loop == 3:
+                        anti_killer = 1
                         choice_5_c()
 
                         choice_a = input("What do you do? ")
@@ -933,7 +933,6 @@ def main():
 
                                 if "golden ring" in inventory:
                                     pressure_plate_2_survive()
-                                    # this loop allows you to approach the wizard
                                     loop = 4
                                     while loop == 4 and loop != 1:
                                         lake_wizard = input("Do you approach the wizard? ")
@@ -969,11 +968,7 @@ def main():
 
                                                 if wizard_questions.lower() == "4":
                                                     wizard_question_4()
-                                                    # TODO: revise the loops and fix
                                                     loop = 2
-                                                    # break
-                                                    # break
-                                                    # break
                                                     wizard = 2
                                                     continue
 
@@ -982,7 +977,6 @@ def main():
                                                     time.sleep(3)
                                                     loop = 5
                                                     achievement_unlocked("Starting the rebellion.", achievements)
-                                                    # TODO: possibly revise print statement
                                                     print("Nice! Now please choose a valid response!")
                                                     continue
 
@@ -1014,6 +1008,8 @@ def main():
                                     inventory_display(inventory)
                                     continue
                                 else:
+                                    print("You find nothing.")
+                                    time.sleep(3)
                                     battle_killer_start(wizard, anti_killer)
                                     result = fight_killer(health, loop, inventory, active_effects, achievements, wizard, anti_killer)
                                     health = result[0]
@@ -1031,6 +1027,9 @@ def main():
 
                                 time.sleep(3)
                                 if "feather" not in inventory:
+                                    time.sleep(3)
+                                    print("You see a feather on a table.")
+                                    time.sleep(3)
                                     hidden_passage_feather = input("Do you take the feather? ")
 
                                     if hidden_passage_feather.lower() in user_yes:
